@@ -914,4 +914,4 @@ if st.session_state.step == "result":
 
      st.rerun()
 st.markdown("---")
-st.caption("© 2026 PerioSathi™ | Developed by [Your Name] | All rights reserved.")        
+st.caption("© 2026 PerioSathi™ | Developed by [sawal kala] | All rights reserved.")        
