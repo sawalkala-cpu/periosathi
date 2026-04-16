@@ -894,11 +894,8 @@ if st.session_state.step == "result":
         st.caption("⚠️ यह केवल जानकारी के लिए है, डॉक्टर का विकल्प नहीं है।")
     if lang == "Marathi":
         st.caption("⚠️ हे फक्त माहिती साठी आहे, डॉक्टरांचा पर्याय नाही.")
+
 # -------------------------------
-# RESET / NEW PATIENT
-# -------------------------------
-    
-    # -------------------------------
 # NEW PATIENT BUTTON
 # -------------------------------
     if st.button("➕ New Patient"):
@@ -916,4 +913,5 @@ if st.session_state.step == "result":
      st.session_state.greet_done = False
 
      st.rerun()
-        
+st.markdown("---")
+st.caption("© 2026 PerioSathi™ | Developed by [Your Name] | All rights reserved.")        
