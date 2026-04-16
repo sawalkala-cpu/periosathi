@@ -17,3 +17,4 @@ A simple Streamlit app template for you to modify!
    ```
    $ streamlit run streamlit_app.py
    ```
+PerioSathi™ is a proprietary academic project. Unauthorized use or reproduction is strictly prohibited.
