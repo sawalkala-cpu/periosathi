@@ -36,6 +36,15 @@ def save_data(data):
 # -------------------------------
 st.set_page_config(page_title="PerioSathi", layout="centered")
 
+st.markdown("""
+<style>
+.block-container {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # -------------------------------
 # SESSION STATE
 # -------------------------------
@@ -53,9 +62,6 @@ if "greet_done" not in st.session_state:
 
 if "answers" not in st.session_state:
     st.session_state.answers = {}
-
-if "show_video" not in st.session_state:
-    st.session_state.show_video = False
 # -------------------------------
 # LOGO FUNCTION
 # -------------------------------
@@ -227,9 +233,21 @@ if st.session_state.step == "assessment":
     base = lang_data[lang]
 
     center_logo()
+    st.write("")
 
-    st.markdown(f"<h2 style='text-align:center;'>{base['title']}</h2>", unsafe_allow_html=True)
+    st.markdown(
+    f"<h2 style='text-align:center; margin-bottom:10px;'>{base['title']}</h2>",
+    unsafe_allow_html=True
+)
+    st.markdown("---")
+    if lang == "English":
+        st.markdown("#### Please answer the following questions:")
+    if lang == "Hindi":
+        st.markdown("#### कृपया निम्नलिखित प्रश्नों के उत्तर दें:")
+    if lang == "Marathi":
+        st.markdown("#### कृपया खालील प्रश्नांची उत्तरे द्या:")
 
+    st.write("")
     # -------------------------------
     # ASSESSMENT DATA (YOUR EXACT STRUCTURE)
     # -------------------------------
@@ -315,27 +333,6 @@ if st.session_state.step == "assessment":
 # -------------------------------
 if st.session_state.step == "result":
 
-    if st.session_state.show_video:
-
-    # column 9
-        if lang == "English":
-            st.markdown("### ▶ Brushing Technique (Modified Bass Method)")
-        if lang == "Hindi":
-            st.markdown("### ▶ सही ब्रश करने की विधि")
-        if lang == "Marathi":
-            st.markdown("### ▶ योग्य ब्रश करण्याची पद्धत")
-
-    # column 9
-        st.video("https://www.youtube.com/watch?v=VdjmGxq-X7M")
-        st.caption("Source: Educational video (YouTube)")
-
-    # column 9
-        if st.button("⬅ Back"):
-           st.session_state.show_video = False
-           st.rerun()
-
-        st.stop()
-
     lang = st.session_state.language
     base = lang_data[lang]
 
@@ -413,7 +410,7 @@ if st.session_state.step == "result":
      color = "red"
      risk = data["high"]
 
-    if percent >= 33:
+    elif percent >= 33:
      color = "orange"
      risk = data["mod"]
 
@@ -799,22 +796,22 @@ if st.session_state.step == "result":
         if lang == "Marathi":
             typewriter("• ही योग्य ब्रश करण्याची पद्धत नाही.")
             recommendations.append("टूथब्रशने दिवसातून दोन वेळा ब्रश करायला सुरुवात करा.")
-    
-        if lang == "English":
-            if st.button("▶ Learn Proper Brushing Technique"):
-               st.session_state.show_video = True
-               st.rerun()
+    # column 5 (after brushing explanation section)
 
-        if lang == "Hindi":
-            if st.button("▶ सही ब्रश करने की विधि देखें"):
-               st.session_state.show_video = True
-               st.rerun()
+    if lang == "English":
+        st.markdown("### ▶ Recommended Brushing Technique (Modified Bass Method)")
 
-        if lang == "Marathi":
-         if st.button("▶ योग्य ब्रश करण्याची पद्धत पहा"):
-          st.session_state.show_video = True
-          st.rerun()
+    if lang == "Hindi":
+        st.markdown("### ▶ सही ब्रश करने की विधि (Modified Bass Technique)")
+
+    if lang == "Marathi":
+        st.markdown("### ▶ योग्य ब्रश करण्याची पद्धत (Modified Bass Technique)")
+
+    with st.expander("▶ Watch Brushing Technique"):
+         st.video("https://www.youtube.com/watch?v=VdjmGxq-X7M")
+         st.caption("Source: Educational video (YouTube)")
          
+
 # -------------------------------
 # VISIT
 # -------------------------------
